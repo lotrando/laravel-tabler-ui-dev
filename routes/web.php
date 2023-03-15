@@ -18,22 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Route::get('/register', function () {
-    return view('auth.register');
-});
-
-Route::get('/authorize', function () {
-    return view('auth.authorize');
-});
-
-Route::get('/forgot', function () {
-    return view('auth.forgot');
-});
-
 Route::get('/404', function () {
     return view('error.404');
 });

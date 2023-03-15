@@ -8,22 +8,28 @@
           <img src="{{ asset('static/logo.svg') }}" alt="" height="36">
         </a>
       </div>
-      <form class="card card-md" action="" method="post" autocomplete="off" novalidate="">
+      <form class="card card-md shadow-sm" action="{{ url('auth/register') }}" method="post" autocomplete="off">
         @csrf
         <div class="card-body">
           <h2 class="card-title mb-4 text-center">{{ __('Create new account') }}</h2>
           <div class="mb-3">
             <label class="form-label">{{ __('Name') }}</label>
-            <input class="form-control" type="text" placeholder="{{ __('Enter name') }}">
+            <input class="form-control" name="name" type="text" placeholder="{{ __('Enter name') }}">
+            @if ($errors->has('name'))
+              <p class="text-red">{{ $errors->first('name') }}</p>
+            @endif
           </div>
           <div class="mb-3">
-            <label class="form-label">{{ __('Email address') }}</label>
-            <input class="form-control" type="email" placeholder="{{ __('Enter email') }}">
+            <label class="form-label">{{ __('Email') }}</label>
+            <input class="form-control" name="email" type="email" placeholder="{{ __('Enter email') }}">
+            @if ($errors->has('email'))
+              <p class="text-red">{{ $errors->first('email') }}</p>
+            @endif
           </div>
           <div class="mb-3">
             <label class="form-label">{{ __('Password') }}</label>
             <div class="input-group input-group-flat">
-              <input class="form-control" type="password" placeholder="{{ __('Password') }}" autocomplete="off">
+              <input class="form-control" name="password" type="password" placeholder="{{ __('Password') }}" autocomplete="off">
               <span class="input-group-text">
                 <a class="link-secondary" data-bs-toggle="tooltip" data-bs-original-title="{{ __('Show password') }}" href="#"
                   aria-label="{{ __('Show password') }}">
@@ -37,6 +43,9 @@
                 </a>
               </span>
             </div>
+            @if ($errors->has('password'))
+              <p class="text-red">{{ $errors->first('password') }}</p>
+            @endif
           </div>
           <div class="mb-3">
             <label class="form-check">
@@ -50,7 +59,7 @@
         </div>
       </form>
       <div class="text-muted mt-3 text-center">
-        {{ __('Already have account?') }} <a href="./sign-in.html" tabindex="-1">{{ __('Sign in') }}</a>
+        {{ __('Already have account?') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('Sign in') }}</a>
       </div>
     </div>
   </div>
