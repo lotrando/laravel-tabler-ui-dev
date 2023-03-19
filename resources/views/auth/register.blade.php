@@ -14,38 +14,32 @@
           <h2 class="card-title mb-4 text-center">{{ __('Create new account') }}</h2>
           <div class="mb-3">
             <label class="form-label">{{ __('Name') }}</label>
-            <input class="form-control" name="name" type="text" placeholder="{{ __('Enter name') }}">
+            <input class="form-control @if ($errors->has('name')) is-invalid @elseif (old('name')) is-valid @endif" name="name"
+              type="text" value="{{ old('name') }}" placeholder="{{ __('Your name') }}">
             @if ($errors->has('name'))
-              <p class="text-red">{{ $errors->first('name') }}</p>
+              <div class="invalid-feedback">{{ $errors->first('name') }}</div>
             @endif
           </div>
           <div class="mb-3">
             <label class="form-label">{{ __('Email') }}</label>
-            <input class="form-control" name="email" type="email" placeholder="{{ __('Enter email') }}">
+            <input class="form-control @if ($errors->has('email')) is-invalid @elseif (old('email')) is-valid @endif" name="email"
+              type="text" value="{{ old('email') }}" placeholder="{{ __('Enter Email') }}">
             @if ($errors->has('email'))
-              <p class="text-red">{{ $errors->first('email') }}</p>
+              <div class="invalid-feedback">{{ $errors->first('email') }}</div>
             @endif
           </div>
           <div class="mb-3">
             <label class="form-label">{{ __('Password') }}</label>
-            <div class="input-group input-group-flat">
-              <input class="form-control" name="password" type="password" placeholder="{{ __('Password') }}" autocomplete="off">
-              <span class="input-group-text">
-                <a class="link-secondary" data-bs-toggle="tooltip" data-bs-original-title="{{ __('Show password') }}" href="#"
-                  aria-label="{{ __('Show password') }}">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path>
-                  </svg>
-                </a>
-              </span>
-            </div>
+            <input class="form-control @if ($errors->has('password')) is-invalid @elseif (old('password')) is-valid @endif" name="password"
+              type="password" value="{{ old('password') }}" placeholder="{{ __('Your password') }}">
             @if ($errors->has('password'))
-              <p class="text-red">{{ $errors->first('password') }}</p>
+              <div class="invalid-feedback">{{ $errors->first('password') }}</div>
             @endif
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{{ __('Password confirmation') }}</label>
+            <input class="form-control @if ($errors->has('password')) is-invalid @elseif (old('password_confirmation')) is-valid @endif"
+              name="password_confirmation" type="password" placeholder="{{ __('Password confirmation') }}">
           </div>
           <div class="mb-3">
             <label class="form-check">

@@ -15,8 +15,8 @@
             @csrf
             <div class="mb-3">
               <label class="form-label">{{ __('Email') }}</label>
-              <input class="form-control @if ($errors->has('email')) is-invalid @endif" id="email" name="email" type="text"
-                value="{{ old('email') }}" placeholder="your@email.com">
+              <input class="form-control @if ($errors->has('email')) is-invalid @elseif (old('email')) is-valid @endif" id="email"
+                name="email" type="text" value="{{ old('email') }}" placeholder="your@email.com">
               <div class="invalid-feedback">{{ $errors->first('email') }}</div>
             </div>
             <div class="mb-2">
@@ -26,8 +26,8 @@
                   <a href="{{ url('/') }}">{{ __('I forgot password') }}</a>
                 </span>
               </label>
-              <input class="form-control @if ($errors->has('email')) is-invalid @endif"" type="password" placeholder="{{ __('Your password') }}"
-                name="password">
+              <input class="form-control @if ($errors->has('password')) is-invalid @elseif (old('password')) is-valid @endif" name="password"
+                type="password" value="{{ old('password') }}" placeholder="{{ __('Your password') }}">
               @if ($errors->has('password'))
                 <div class="invalid-feedback">{{ $errors->first('password') }}</div>
               @endif
